@@ -1,4 +1,4 @@
-name: 'dbt_fundamentals'
+name: 'dbt_fundamentals_jaffle_shop'
 version: '1.0.0'
 config-version: 2
 
@@ -23,7 +23,7 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 
 models:
-  dbt_fundamentals:
+  dbt_fundamentals_jaffle_shop:
     staging:
       +materialized: view
     mats:
