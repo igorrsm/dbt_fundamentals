@@ -43,3 +43,32 @@ In DBT projects, we should always have the following models:
 - **intermediates:** between stagings and marts models. Have more profound transformations.
 - **fact models:** usually have a lot of transactions and grow with time (sales).
 - **dimension models:** things that exist, that are, that normally don't change, like customers.
+
+
+5. **Sources**
+
+Sources are data objects that come before our stataging models. Usually they're created by data engineers with developed data pipelines.
+
+To configure the sources in our dbt project, we need to use the source function with a .yml configuration file.
+
+The .yml file looks like:
+
+    --src_jaffle_shop.yml
+    version: 2
+    
+    sources:
+      - name: jaffle_shop
+        database: raw
+        schema: jaffle_shop
+        tables:
+          - name: customers
+          - orders
+	    
+
+And the stg with a source function will look like:
+
+    --stg_jaffle_shop__customers.sql
+    
+    select
+	    *
+	from {{source('jaffle_shop', 'customers')}}
